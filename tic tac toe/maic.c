@@ -22,7 +22,7 @@ void initBoard(){
 }
 
 int putPlayer(int idx){
-    if (board[--idx] != ' ' || idx < 0 || idx >= 9){
+    if (idx < 0 || idx >= 9 || board[idx] != ' '){
         return 0;
     }
     board[idx] = player;
