@@ -2,8 +2,7 @@
 
 void swap(int *ptra, int *ptrb){
 
-    int temp;
-    temp=*ptra;
+    int temp = *ptra;
     *ptra=*ptrb;
     *ptrb=temp;
 
@@ -11,14 +10,12 @@ void swap(int *ptra, int *ptrb){
 
 int main(){
     int a=1, b=2;
-     
-    int *ptra=&a, *ptrb=&b;
 
     printf("Antes da troca: a = %d, b = %d\n", a, b);
 
-    swap(ptra,ptrb);
+    swap(&a, &b);
 
-    printf("O valor de a:%d \nO valor de b:%d\n",*ptra,*ptrb);
+    printf("O valor de a:%d \nO valor de b:%d\n",&a,&b);
 
     return 0;
 }

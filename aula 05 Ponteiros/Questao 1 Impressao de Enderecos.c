@@ -3,6 +3,8 @@
 int main()
 
 {   int x=10, *ptrx=&x;
+
+    
     float y=0.5, *ptry=&y;
     char letra='A', *ptrletra=&letra;
 
