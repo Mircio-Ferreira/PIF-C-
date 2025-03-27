@@ -36,9 +36,10 @@ int main(){
                 }
                 else if(antes != atual){
                     caso_repetido = 0;
+                    antes = atual;
                 }
 
-                antes = atual;
+                
             }
             
             cont_palavra++; 
