@@ -2,44 +2,42 @@
 #include <string.h>
 
 int main() {
-    char palavra[1001];  // Array para armazenar a linha de entrada
-    char antes, atual;
-
-    while (gets(palavra) != NULL) {  // Enquanto houver entrada de dados
-        int cont_palavra = 0, cont = 0;
-
-        // Pula espaços iniciais, se houver
-        //while (palavra[cont_palavra] == ' ') cont_palavra++;
-
-        // Pega a primeira letra da primeira palavra
-        antes = palavra[cont_palavra];  // "antes" recebe a primeira letra da primeira palavra
-
-        cont_palavra++;  // Avança para o próximo caractere, após a primeira palavra
-
-        // Percorre as palavras a partir do segundo caractere
-        while (palavra[cont_palavra] != '\0') {
-            // Quando encontrar um espaço, considera que uma palavra terminou
-            if (palavra[cont_palavra] == ' ') {
-                cont_palavra++;  // Pula o espaço
-
-                // Verifica se não chegou no final da string
-                if (palavra[cont_palavra] != '\0') {
-                    atual = palavra[cont_palavra];  // Pega a primeira letra da próxima palavra
-
-                    // Se a letra inicial da palavra for igual a "antes", incrementa o contador
-                    if (atual == antes) {
-                        cont++;
-                    }
-
-                    antes = atual;  // Atualiza "antes" para a nova letra
+    char linha[5050]; // Buffer para armazenar a linha de entrada (100 palavras * 50 letras cada, mais espaço extra)
+    while (fgets(linha, sizeof(linha), stdin)) { // Lê uma linha da entrada padrão até EOF
+        int aliteracoes = 0, emGrupo = 0; // Contadores para aliterações e estado de grupo
+        char anterior_inicial = 0; // Armazena a inicial da palavra anterior
+        
+        int i = 0, inicio_palavra = 1; // `inicio_palavra` controla quando uma nova palavra começa
+        while (linha[i] != '\0' && linha[i] != '\n') { // Percorre a linha até o final
+            if (linha[i] != ' ') { // Se o caractere não for um espaço, é parte de uma palavra
+                char inicial = linha[i]; // Captura o primeiro caractere da palavra
+                if (inicial >= 'A' && inicial <= 'Z') { // Converte maiúsculas para minúsculas
+                    inicial += 'a' - 'A';
                 }
+                
+                if (inicio_palavra) { // Só verifica a inicial quando é uma nova palavra
+                    if (anterior_inicial >= 'A' && anterior_inicial <= 'Z') { // Converte a inicial anterior para minúscula, se necessário
+                        anterior_inicial += 'a' - 'A';
+                    }
+                    
+                    if (anterior_inicial == inicial) { // Compara com a inicial da palavra anterior
+                        if (!emGrupo) { // Evita contar múltiplas vezes dentro do mesmo grupo
+                            aliteracoes++;
+                            emGrupo = 1;
+                        }
+                    } else {
+                        emGrupo = 0; // Reinicia o estado de grupo quando a inicial muda
+                    }
+                    anterior_inicial = inicial; // Atualiza a inicial anterior já convertida
+                    inicio_palavra = 0; // Marca que estamos no meio de uma palavra
+                }
+            } else {
+                inicio_palavra = 1; // Próximo caractere pode ser o início de uma nova palavra
             }
-            cont_palavra++;  // Avança para o próximo caractere
+            i++;
         }
-
-        // Imprime o número de aliterações encontrados
-        printf("%d\n", cont);
+        
+        printf("%d\n", aliteracoes); // Exibe a quantidade de aliterações encontradas
     }
-
     return 0;
 }
