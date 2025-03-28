@@ -16,10 +16,11 @@ int main(){
     int tamanho=strlen(palavra);
 
     for(int i=0;i<tamanho-1;i++){
-        for(int j=0;j<tamanho-1;j++){
+        for(int j=0;j<tamanho-1-i;j++){
             if(palavra[j]>palavra[j+1]){
-                swap(&palavra[j],&palavra[j+1]);
-
+                char temp=palavra[j];
+                palavra[j+1]=palavra[j];
+                palavra[j]=temp;
             }
         }
     }
