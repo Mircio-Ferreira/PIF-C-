@@ -1,12 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-void swap(char *a,char *b){
-    char temp;
-    temp=*a;
-    *a=*b;
-    *b=temp;
-}
 
 int main(){
 
@@ -19,8 +13,8 @@ int main(){
         for(int j=0;j<tamanho-1-i;j++){
             if(palavra[j]>palavra[j+1]){
                 char temp=palavra[j];
-                palavra[j+1]=palavra[j];
-                palavra[j]=temp;
+                palavra[j]=palavra[j+1];
+                palavra[j+1]=temp;
             }
         }
     }

@@ -1,67 +1,68 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-int primo(int num, char *palavra){
-    char palavranum[1000];
-    int copia_num=num;
-    int qant_num=0;
-
-    while(copia_num!=0){
-        palavranum[qant_num]=copia_num%10+'0';
-        copia_num=copia_num/10;
-        
-        qant_num++;
-    }
-    palavranum[qant_num]='\0';
-
-    
-
-    //swap
-    for(int i=0;i<qant_num/2;i++){
-        char temp=palavranum[i];
-        palavranum[i]=palavranum[qant_num-1-i];
-        palavranum[qant_num-1-i]=temp;
-    }
-
-    //strcat(palavra,palavranum);
-
-    int cont_palavra=0;
-    while(palavra[cont_palavra]!='\0'){
-        cont_palavra++;
-    }
-    for(int i=0;i<qant_num;i++){
-        palavra[cont_palavra]=palavranum[i];
-        cont_palavra++;
-        
-    }
-    palavra[cont_palavra]='\0';
-    
-   
-    printf("%s\n",palavra);
-
-    for(int i=2;i<num;i++){
-        if(num%i==0){
-            return 0;
-        }
-    }
-
-
-
-    return 1;
-}
-
+int primo(int numero,char string[100]);
 
 int main(){
 
-    char palavra[100000]="bananinha";
+    int valor;
+    char string[100];
 
-    int resultado=primo(1230,palavra);
+    scanf("%d",&valor);
+    scanf("%s",string);
+    
+    int resposta = primo(valor,string);
 
-    if(resultado){
-        printf("\n Ala primo!");
-
+    if (resposta==1){
+        printf("Primo!\n");
     }
-    else printf("\n Grrr nao primo");
-
+    else{
+        printf("Não é primo!\n");
+    }
     return 0;
+}
+
+int primo(int numero,char string[100]){
+    int valor=1;
+
+    if (numero != 1 && numero != 2){
+        for (int i=2;i<numero-1;i++){
+            if (numero%i==0){
+                valor=0;
+                break;
+            }
+        }
+    }
+    
+
+    char stringnumero[12];
+
+    sprintf(stringnumero, "%d", numero);
+
+    int tamanhostring = strlen(string);
+    int tamanhonumero = strlen(stringnumero);
+
+    int total= tamanhostring + tamanhonumero;
+    int contletras=0,contnumero=0,i=0;
+
+    char resposta[total+1];
+    
+
+    while (i<total){
+        if (contletras < tamanhostring) {
+            resposta[i] = string[contletras];
+            contletras++;
+        } else if (contnumero < tamanhonumero) {
+            resposta[i] = stringnumero[contnumero];
+            contnumero++;
+        }
+        i++;
+    }
+
+    resposta[total]='\0';
+
+    printf("%s\n",resposta);
+
+   return valor;
 }

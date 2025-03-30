@@ -24,7 +24,7 @@ int decimal(char *binario){
 
 int main(){
 
-    char binario[9]="00000100";
+    char binario[9]="10000100";
     printf("O binario: [%s] em decimal:[%d]",binario,decimal(binario));
     return 0;
 }
