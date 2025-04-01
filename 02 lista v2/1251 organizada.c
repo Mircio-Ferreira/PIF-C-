@@ -57,7 +57,7 @@ int organizar_esquerda(int *frequencia_asc, char *caracter_asc){
 
     for(int i=0;i<256;i++){
         if(frequencia_asc[i]!=0){
-            
+
             frequencia_asc[incremento_direita]=frequencia_asc[i];
             caracter_asc[incremento_direita]=caracter_asc[i];
 
