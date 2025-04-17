@@ -2,19 +2,26 @@
 #include <stdlib.h>
 
 typedef struct{
-    char *nome;
-    int pag;
-} livro;
+    char *titulo;
+    int pagina;
+} Livro;
 
 int main(){
-    int quanto_livros;
-    scanf("%d",&quanto_livros);
-    livro *vetor;
-    vetor=malloc(quanto_livros*sizeof(livro));
+    int n=2;
 
-    for(int i=0;i<quanto_livros;i++){
-        (*vetor).nome=malloc(50*sizeof(char));
+    Livro *vetor;
+    vetor=malloc(n*sizeof(Livro));
+
+    for(int i=0;i<n;i++){
+        vetor[i].titulo=malloc(50*sizeof(char));
+        scanf(" %[^\n]",vetor[i].titulo);
+        scanf(" %d",&vetor[i].pagina);
     }
+
+    for(int i=0;i<n;i++){
+        printf("Livro: %s\tPagina: %d\n",vetor[i].titulo,vetor[i].pagina);
+    }
+    free(vetor);
 
     return 0;
 }

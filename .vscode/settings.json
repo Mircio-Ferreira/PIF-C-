@@ -3,6 +3,7 @@
         "*.sqlbook": "sql",
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
-        "2466.C": "cpp"
+        "2466.C": "cpp",
+        "stdio.h": "c"
     }
 }
