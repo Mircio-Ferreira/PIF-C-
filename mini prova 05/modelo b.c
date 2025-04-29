@@ -17,3 +17,82 @@
 //Função para encontrar a  música mais ouvida no ano. Sua função deve imprimir o nome da música, artista, e álbum (0.5);
 //Função para encontrar  o tamanho total da lista (ou seja, quantas músicas diferentes o usuário ouviu naquele ano) (0.5);
 //Função para encontrar o tempo total que usuário passou no aplicativo ouvindo músicas (0.5);
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct node{
+    char nome_music[50];
+    char artista[100];
+    char album[50];
+    int minutos;
+    struct node *next;
+}no;
+
+int tamanho(no *head);
+
+int tot_minutos(no *head);
+
+void musica_mais_ouvida(no *head);
+
+int main(){
+
+
+    return 0;
+}
+
+
+int tamanho(no *head){
+    int cont=0;
+    no *aux;
+    aux=head;
+
+    while(aux!=NULL){
+        cont++;
+        aux=aux->next;
+    }
+    return cont;
+}
+
+int tot_minutos(no *head){
+    int total=0;
+    no *aux=head;
+
+    while(aux!=NULL){
+        total+=aux->minutos;
+        aux=aux->next;
+    }
+    return total;
+}
+
+
+void musica_mais_ouvida(no *head){
+    no *aux=head;
+    int maior=-1;
+    char name[50];
+    char artist[100];
+    char album[50];
+    int min;
+    
+    if(head==NULL){
+        printf("Lista vazaia");
+    }
+
+    else{
+        while(aux!=NULL){
+            if(maior<aux->minutos){
+                maior=aux->minutos;
+                strcpy(name,aux->nome_music);
+                strcpy(artist,aux->artista);
+                strcpy(album,aux->album);
+
+            }
+        }
+        printf("Nome da musica: %s\tArista: %s\tAlbum: %s",name,artist,album);
+
+    }
+
+    
+
+}
