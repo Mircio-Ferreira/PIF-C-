@@ -20,6 +20,36 @@ typedef struct node{
     struct node *next;
 }No;
 
+void insert_srt(No **head,char *nome_entra, float nt, int ft){
+    No *new=malloc(sizeof(No));
+    strcpy(new->name,nome_entra);
+    new->falta=ft;
+    new->nota=nt;
+    new->next=NULL;
+
+    if(*head==NULL) *head=new;
+
+    else if(strcmp((*head)->name,nome_entra) >0 ){
+        new->next=*head;
+        *head=new;
+        return;
+    }
+    else{
+        No *aux=*head;
+
+        while(aux->next!=NULL){
+            if(strcmp(aux->next->name,nome_entra) > 0){
+                new->next=aux->next;
+                aux->next=new;
+                return;
+            }
+            aux=aux->next;
+        }
+        aux->next=new;// CASO DE INSERSAO NO ULTIMO
+    }
+
+}
+
 
 void add (No **head,char *nome_entra, float nt, int ft){
 
@@ -107,6 +137,28 @@ void remover (No **head,char *name_remove){
     
 }
 
+void limpar (No **head){
+    No *aux=*head; 
+    No *remover;
+
+    if(aux==NULL){
+        printf("Nao tem o que remover, lista vazia!");
+        return;
+    }
+
+    while(aux!=NULL){
+
+        remover=aux;
+
+        aux=aux->next;
+
+        free(remover);
+    }
+
+    printf("Lista limpa com sucesso!\n");
+    *head=NULL;//Faz o head volta a ser nullo para reotilizar
+
+}
 
 int main(){
     
@@ -126,7 +178,9 @@ int main(){
             scanf("%d",&falta);
             scanf("%f",&nota);
 
-            add(&head,nome,nota,falta);
+            //add(&head,nome,nota,falta);
+            insert_srt(&head,nome,nota,falta);
+
 
         }
         else if(comando==3){
@@ -138,6 +192,19 @@ int main(){
             listar(head);
         }
     }   while(comando!=4);
+
+    printf("\n\n\nLista antes de ser limpada\n");
+
+    listar(head);
+
+    limpar(&head);
+
+    printf("\n\n\nLista depois de ser limpada!\n");
+
+
+    listar(head);
+
+    
 
     return 0;
 }
