@@ -22,6 +22,7 @@ void add(No **head, int entrada){
         No *aux=*head;
 
         while(aux!=NULL){
+            
             if(aux->next==NULL){
                 aux->next=new;
                 return;

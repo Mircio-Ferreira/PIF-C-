@@ -60,6 +60,8 @@ void mover_topo(No **head){
         aux=*head; //resetando o aux para o comeco
 
         while(aux!=NULL){
+            //[10] → [5] → [8] → [3] → [12]
+
             if(aux->next!=NULL &&  aux->next->num==menor){
                 
                 No *remover=aux->next;
