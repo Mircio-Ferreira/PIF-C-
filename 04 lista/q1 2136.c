@@ -45,8 +45,9 @@ int main(){
 
     printar(head_yes);
     printar(head_no);
-
-
+    printf("\n");
+    ganhador(head_yes);
+    
     return 0;
 }
 
@@ -97,3 +98,19 @@ void printar(No *head){
     }
 }
 
+void ganhador(No *head){
+    char nome_ganhador[50];
+    int id_ganhador;
+
+    strcpy(nome_ganhador,head->nome);
+    id_ganhador=head->id_entrada;
+
+    while(head!=NULL){
+        if(strlen(nome_ganhador)<=strlen(head->nome) && id_ganhador < head->id_entrada  ){
+            id_ganhador=head->id_entrada;
+            strcpy(nome_ganhador,head->nome);
+        }
+        head=head->next;
+    }
+    printf("Amigo do Habay:\n%s\n",nome_ganhador);
+}
