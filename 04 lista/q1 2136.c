@@ -106,7 +106,10 @@ void ganhador(No *head){
     id_ganhador=head->id_entrada;
 
     while(head!=NULL){
-        if(strlen(nome_ganhador)<=strlen(head->nome) && id_ganhador < head->id_entrada  ){
+        if(strlen(nome_ganhador)<strlen(head->nome) ||
+        (  strlen(nome_ganhador)==strlen(head->nome)  && id_ganhador > (head -> id_entrada)  )){
+            
+            
             id_ganhador=head->id_entrada;
             strcpy(nome_ganhador,head->nome);
         }
