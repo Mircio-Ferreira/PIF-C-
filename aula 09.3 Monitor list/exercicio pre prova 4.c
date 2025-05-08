@@ -18,10 +18,71 @@ void sort(No **head);
 
 void removertimelast( No **head,int time_alvo);
 
-int main(){
+void listar(No *head);
+
+
+
+int main() {
+    No *lista = NULL;
+
+    // Inserindo elementos na lista
+    inserir(&lista, 1, "192.168.0.1", 1000);
+    inserir(&lista, 2, "192.168.0.2", 1050);
+    inserir(&lista, 3, "10.0.0.1", 950);
+    inserir(&lista, 4, "192.168.0.1", 1100); 
+    inserir(&lista, 1, "192.168.0.1", 1200); // duplicado (ID e IP igual ao primeiro)
+
+    printf("Lista original:\n");
+    listar(lista);
+
+    // Remover duplicatas (mesmo IP e ID)
+    removerduplicada(&lista);
+    printf("\nApos remover duplicatas:\n");
+    listar(lista);
+
+    // Ordenar por timestamp (menor para maior)
+    sort(&lista);
+    printf("\nApos ordenar por timestamp:\n");
+    listar(lista);
+
+    // Remover acessos com timestamp < 1000
+    removertimelast(&lista, 1000);
+    printf("\nApos remover acessos com timestamp < 1000:\n");
+    listar(lista);
 
     return 0;
 }
+
+
+void removerduplicada(No **head) {
+    if (*head == NULL) {
+        printf("Nao ha o que remover, lista vazia!\n");
+        return;
+    }
+
+    No *aux = *head;
+
+    while (aux != NULL) {
+        No *aux2 = aux;
+
+        while (aux2->next != NULL) {
+            if (aux2->next->idUsuario == aux->idUsuario &&
+                strcmp(aux2->next->ip, aux->ip) == 0) {
+                // Remove o nó duplicado
+                No *remover = aux2->next;
+                aux2->next = aux2->next->next;
+                free(remover);
+            } else {
+                aux2 = aux2->next;
+            }
+        }
+
+        aux = aux->next;
+    }
+}
+
+
+
 
 void inserir (No **head, int id, char *ip, int time){
     No *new=malloc(sizeof(No));
@@ -40,39 +101,15 @@ void inserir (No **head, int id, char *ip, int time){
         }
         aux->next=new;
     }
-}
-
-void removerduplicada(No **head){
-
-    No *aux=*head;
-    No *aux2=NULL;
-    if(*head==NULL) printf("Nao ha o que remover,lista vaziaa!\n");
-
-    while(aux!=NULL){
-        char ipcomparador[16];
-        int idcompradaor=aux->idUsuario;
-        strcpy(ipcomparador,aux->ip);
-        aux2=aux;
-
-        while(aux2->next!=NULL){
-                if(strcmp(aux2->ip,ipcomparador)==0 && aux2->idUsuario==idcompradaor){
-                    No *remover=aux2->next;
-                    aux2->next=aux2->next->next;
-                    free(remover);
-                }
-                aux2=aux2->next;
-        }
-        aux=aux->next;
-    }
-
 
 }
-
 void sort(No **head){
     int troca=0;
     No *aux=*head;
 
     do{
+
+        troca=0;
 
         while(aux!=NULL){
 
@@ -99,41 +136,43 @@ void sort(No **head){
     }while(troca);
 }
 
-// void removertimelast( No **head,int time_alvo){
-//     No *aux=*head;
-//     No *remover;
-//     if(*head==NULL){
-//         printf("nao a o que remover, lista vaziaa!\n");
-//         return;
-//     }
+void removertimelast( No **head,int time_alvo){
+    No *aux, *deletar;
 
+    if(*head==NULL) {
+        printf("Lista vazia\n");
+        return;
+    }
+    //Removendo a head
+    while((*head)->timestamp < time_alvo){
+        deletar=*head;
+        *head=(*head)->next;
+        free(deletar);
 
-//     while(aux->next!=NULL){
-//         //remover no inicio
-//         if(aux->timestamp < time_alvo){
-//             remover=aux;
-//             *head=aux->next;
-//             aux=*head;
-//             free(remover);
+        if(*head==NULL){
+            return;
+        }
+    }
 
-//             if(*head==NULL) break; //Removeu tudo
+    aux=*head;
 
-//             aux=aux->next;
-//         }
-//         else{
-//             //Caso que irei remover o ultimo ou o do meio
+    while(aux->next!=NULL){
 
-//             if(aux->next->timestamp < time_alvo){
-//                 remover=aux->next;
-//                 aux->next=aux->next->next;
-//                 free(remover);
-//                 if(aux->next==NULL) break;
-//             }
+        if(aux->next->timestamp < time_alvo){
+            deletar=aux->next;
+            aux->next=aux->next->next;
+            free(deletar);
+        }
+        else{
+            aux=aux->next;
+        }
 
-//             else{
-//                 aux=aux->next;
-//             }
-//         }
-        
-//     }
-// }
+    }   
+}
+
+void listar(No *head){
+    while(head!=NULL){
+        printf("ID: %d | IP: %s | Timestamp: %d\n", head->idUsuario, head->ip, head->timestamp);
+        head=head->next;
+    }
+}
