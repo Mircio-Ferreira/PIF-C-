@@ -1,0 +1,32 @@
+📝 Básico
+Criação e Escrita Simples
+Escreva um programa que crie um arquivo chamado dados.txt e escreva nele o texto "Olá, mundo!".
+
+Leitura de Arquivo
+Faça um programa que leia o conteúdo de dados.txt (criado na questão anterior) e imprima na tela.
+
+Contar Linhas de um Arquivo
+Faça um programa que conte quantas linhas existem em um arquivo de texto.
+
+📚 Intermediário
+Copiar Conteúdo de um Arquivo para Outro
+Crie um programa que copie todo o conteúdo de arquivo_origem.txt para arquivo_destino.txt.
+
+Escrita de Números em Arquivo
+Peça ao usuário 5 números inteiros e grave cada número em uma linha no arquivo numeros.txt.
+
+Soma dos Números de um Arquivo
+Leia o arquivo numeros.txt da questão anterior e calcule a soma de todos os números contidos nele.
+
+Contar Palavras
+Faça um programa que leia um arquivo e conte quantas palavras ele possui. (Dica: use fscanf com %s e conte cada leitura).
+
+🔍 Avançado
+Remover uma Linha Específica
+Escreva um programa que remova uma linha específica de um arquivo de texto, dado o número da linha a ser removida.
+
+Buscar Palavra no Arquivo
+Faça um programa que busque uma palavra informada pelo usuário dentro de um arquivo e informe em quais linhas ela aparece.
+
+Editar Arquivo com Structs
+Crie um programa que armazene uma lista de pessoas com nome e idade usando struct em um arquivo binário, e permita consultar e atualizar os dados.

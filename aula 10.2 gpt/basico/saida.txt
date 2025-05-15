@@ -1,0 +1,7 @@
+Num: 1 linha: Hello Wolrd!
+Num: 2 linha: batatinha frita
+Num: 3 linha: mircio
+Num: 4 linha: suco
+Num: 5 linha: pamonha
+Num: 6 linha: pif
+Num: 7 linha: formula c
