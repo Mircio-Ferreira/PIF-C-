@@ -1,0 +1,2 @@
+Book: livro1 	id: 1 	R$:10.30
+Book: livro2 	id: 20 	R$:34.00
