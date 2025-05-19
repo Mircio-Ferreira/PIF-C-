@@ -1,0 +1,3 @@
+mircio 30
+batata 40
+suco 30
