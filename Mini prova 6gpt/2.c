@@ -18,7 +18,11 @@ int main(){
         int len=strlen(line);
 
         inverter_string(line,0,len-1);
+
+        fprintf(write,"%s\n",line);
     }
+    fclose(write);
+    fclose(read);
 
     return 0;
 }
