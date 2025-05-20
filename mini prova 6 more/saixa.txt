@@ -1,0 +1,7 @@
+Numero de vogais a: 3 linha: banana
+Numero de vogais a: 3 linha: abacaxi
+Numero de vogais a: 1 linha: computador
+Numero de vogais a: 1 linha: arduino
+Numero de vogais a: 1 linha: linguagem
+Numero de vogais a: 3 linha: programacao
+Numero de vogais a: 2 linha: casa
