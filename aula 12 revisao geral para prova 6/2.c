@@ -15,6 +15,18 @@ void reverse_print_line(char *string,int idx){
     
 }
 
+void reversev2(char *string){
+    
+    if(*string=='\0') return;
+    
+    reversev2(string+1);
+
+    if(*string!=' '){
+        printf("%c",*string);
+    }
+    
+}
+
 int main(){
     FILE *read;
     read=fopen("2entrada.txt","r");
@@ -27,8 +39,9 @@ int main(){
 
     while(fgets(line,sizeof(line),read)!=NULL){
         int len=strlen(line);
-        reverse_print_line(line,len-1);
+        //reverse_print_line(line,len-1);
         //printf("\n");
+        reversev2(line);
     }
     fclose(read);
 
