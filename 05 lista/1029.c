@@ -13,7 +13,7 @@ int main(){
         chamadas=0;
         int x;
         scanf("%d",&x);
-        //printf("f(%d) calls = %d = %d\n",x, chamadas-1,fibonaci(x));
+        
         printf("fib(%d) = %d calls = %d\n",x, chamadas-1,fibonaci(x));
 
         
